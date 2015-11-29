@@ -1,0 +1,41 @@
+{{define "googlemap/googlemap"}}
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+    <meta charset="UTF-8">
+    <title>{{.Title}} GeoJsonSample | GoogleMapAPIv3</title>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        html, body, #canvas {width:100%; height:100%; margin:0px; padding:0px;}
+    </style>
+</head>
+<body>
+<div id="canvas"></div>
+<script>
+$(function(){
+    var latLng = new google.maps.LatLng(36.786897, 136.892720);
+    var mapOptions = {
+        zoom: 9,
+        center: latLng
+    };
+    var div = document.getElementById("canvas");
+    div.style.width = div.style.height = '100%';
+    var map = new google.maps.Map(div, mapOptions);
+
+	$.getJSON("{{.JsonURL}}", function(json){
+		map.data.addGeoJson(json);
+    	map.data.setStyle({fillColor: 'orange'});
+		// PanTo Center
+		var latLng = json.features[0].geometry.coordinates[0][0];
+		console.log(latLng);
+		var lat = parseFloat(latLng[1]);
+		var lng = parseFloat(latLng[0]);
+		var center = new google.maps.LatLng(lat, lng);
+		map.panTo(center);
+	});
+});
+</script>
+</body>
+</html>
+{{end}}

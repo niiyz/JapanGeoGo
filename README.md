@@ -1,6 +1,6 @@
 # JapanCityGeoJson
 
-47都道府県の県・市・町・村・郡・区の形を作るためのGeoJsonデータ、TopoJsonデータです。
+47都道府県のGeoJsonを県・市・町・村・郡・区単位に分割したりTopoJsonを作るGo、shellです。
 
 GeoJsonを細かい単位に分割して使いやすくするのが目的です。
 
@@ -26,11 +26,17 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ### GeoJson作成
 
+- japan.jsonという全国分のGeoJsonができます。
+
 ~~~
 % make geojson
+% ls -l japan.json
+-rw-r--r--  1 tetsuya  staff  607312018 11 24 23:28 japan.json
 ~~~
 
 ### GeoJson分割
+
+- geojsonディレクトリにgeojsonが出力されます。
 
 ~~~
 % make geojson-split
@@ -67,6 +73,8 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 ~~~
 
 ### TopoJson作成
+
+- topojsonディレクトリにtopojsonが出力されます。（作成中）
 
 ~~~
 % make topojson

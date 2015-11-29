@@ -1,4 +1,4 @@
-# JapanCityGeoJson
+# JapanGeoJsonGo
 
 47都道府県のGeoJsonを県・市・町・村・郡・区単位に分割したりTopoJsonを作るGo、shellです。
 

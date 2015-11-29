@@ -2,13 +2,23 @@
 
 47都道府県の県・市・町・村・郡・区の形を作るためのGeoJsonデータ、TopoJsonデータです。
 
-分割して必要な地域のファイルのみにするのが目的です。
+GeoJsonを細かい単位に分割して使いやすくするのが目的です。
+
+# ダウンロード
+
+- 元データを以下URLからダウンロードします。
+
+国土交通省国土政策局GISHP http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03.html
+
 
 # コマンド
 
-### dataディレクトリにファイル設置
+### ファイル設置
+
+- dataディレクトリを作成してダウンロードしたデータを配置
 
 ~~~
+% mkdir data
 % ls data
 KS-META-N03-15_150101.xml	N03-15_150101.prj		N03-15_150101.shx
 N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
@@ -37,15 +47,23 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 ~~~
 
 ~~~
-make geosample PREF=神奈川県 CITY=横浜市
+% make geosample PREF=神奈川県 CITY=横浜市
 ~~~
 
 ~~~
-make geosample PREF=神奈川県 CITY=横浜市青葉区
+% make geosample PREF=神奈川県 CITY=横浜市青葉区
+~~~
+
+~~~
+% make geosample PREF=鹿児島県 CITY=薩摩郡
 ~~~
 
 ~~~
 % make geosample PREF=鹿児島県 CITY=薩摩郡さつま町
+~~~
+
+~~~
+% make geosample PREF=沖縄県
 ~~~
 
 ### TopoJson作成
@@ -67,8 +85,6 @@ http://geojson.niiyz.com/
 
 ```
 国土数値情報 (JPGIS2.1(GML)準拠及びSHAPE形式データ)　国土交通省
-
-国土交通省国土政策局GISHP http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03.html
 
 GeoJson http://geojson.org/
 

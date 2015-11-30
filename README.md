@@ -62,6 +62,8 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ##### GeoJson GoogleMap Test
 
+<img alt="screenshot_geojson_on_googlemap" width="500" src="https://github.com/niiyz/JapanGeoGo/blob/master/images/screenshot_geojson.png" />
+
 - ブラウザでlocalhost:3000で確認。
 
 - Ctrl + Cで終了。
@@ -95,6 +97,8 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 ~~~
 
 ##### TopoJson D3.js Test
+
+<img alt="screenshot_topojson_on_d3js" width="500" src="https://github.com/niiyz/JapanGeoGo/blob/master/images/screenshot_topojson.png" />
 
 ~~~
 % make toposample PREF=富山県 CITY=高岡市

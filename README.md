@@ -1,17 +1,33 @@
 # JapanGeoJsonGo
 
-47都道府県のGeoJsonを県・市・町・村・郡・区単位に分割したりTopoJsonを作るGo、shellです。
+47都道府県のGeoJsonを県・市・町・村・郡・区単位に分割するGo、TopoJsonを作るラッパーshellです。
 
 GeoJsonを細かい単位に分割して使いやすくするのが目的です。
+
+# 準備
+
+Use MacOSX
+
+~~~
+% // ogr2ogr
+% brew install gdal
+% which ogr2ogr
+% // topojson
+% npm install -g topojson
+% which topojson]
+% // Golang
+% brew install go
+% go version
+% go version go1.4.2 darwin/amd64
+% // Clone
+% git clone https://github.com/niiyz/JapanGeoGo.git
+~~~
 
 # ダウンロード
 
 - 元データを以下URLからダウンロードします。
 
 国土交通省国土政策局GISHP http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03.html
-
-
-# コマンド
 
 ### ファイル設置
 
@@ -24,9 +40,11 @@ KS-META-N03-15_150101.xml	N03-15_150101.prj		N03-15_150101.shx
 N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 ~~~
 
+# コマンド
+
 ### GeoJson作成
 
-- japan.jsonという全国分のGeoJsonができます。
+- GeoJson「japan.json」を出力。
 
 ~~~
 % make geojson
@@ -36,7 +54,7 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ### GeoJson分割
 
-- geojsonディレクトリにgeojsonが出力されます。
+- ディレクトリgeojsonを作成、配下にgeojson出力。
 
 ~~~
 % make geojson-split
@@ -47,10 +65,6 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 - ブラウザでlocalhost:3000で確認。
 
 - Ctrl + Cで終了。
-
-~~~
-% make geosample PREF=富山県 CITY=氷見市
-~~~
 
 ~~~
 % make geosample PREF=神奈川県 CITY=横浜市
@@ -74,7 +88,7 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ### TopoJson作成
 
-- topojsonディレクトリにtopojsonが出力されます。（作成中）
+- ディレクトリtopojsonを作成、配下にtopojson作成。
 
 ~~~
 % make topojson
@@ -82,13 +96,13 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ##### TopoJson D3.js Test
 
+~~~
+% make toposample PREF=富山県 CITY=高岡市
+~~~
 
-### 市町村郡区シェイプ確認デモ(GoogleMap)
-
-http://geojson.niiyz.com/
-
-
-![Screencast](https://github.com/niiyz/JapanCityGeoJson/blob/master/screenshot2.png)
+~~~
+% make toposample PREF=北海道
+~~~
 
 
 ```

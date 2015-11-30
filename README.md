@@ -62,11 +62,17 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ##### GeoJson GoogleMap Test
 
+~~~
+% make geosample PREF=東京都 CITY=新宿区
+~~~
+
 <img alt="screenshot_geojson_on_googlemap" width="500" src="https://github.com/niiyz/JapanGeoGo/blob/master/images/screenshot_geojson.png" />
 
 - ブラウザでlocalhost:3000で確認。
 
 - Ctrl + Cで終了。
+
+##### Example
 
 ~~~
 % make geosample PREF=神奈川県 CITY=横浜市
@@ -98,7 +104,14 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 
 ##### TopoJson D3.js Test
 
+~~~
+% make toposample PREF=石川県
+~~~
+
 <img alt="screenshot_topojson_on_d3js" width="500" src="https://github.com/niiyz/JapanGeoGo/blob/master/images/screenshot_topojson.png" />
+
+
+##### Example
 
 ~~~
 % make toposample PREF=富山県 CITY=高岡市

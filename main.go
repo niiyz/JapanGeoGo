@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/niiyz/JapanCityGeoJson/geo"
+	"github.com/niiyz/JapanGeoGo/geo"
 	"io/ioutil"
 	"os"
 )

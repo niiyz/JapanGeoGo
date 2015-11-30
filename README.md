@@ -104,11 +104,8 @@ N03-15_150101.dbf		N03-15_150101.shp		N03-15_150101.xml
 % make toposample PREF=北海道
 ~~~
 
+### Reference
 
-```
-国土数値情報 (JPGIS2.1(GML)準拠及びSHAPE形式データ)　国土交通省
-
-GeoJson http://geojson.org/
-
-TopoJson https://github.com/mbostock/topojson
-```
+* 国土交通省 国土数値情報 (JPGIS2.1(GML)準拠及びSHAPE形式データ)　: http://nlftp.mlit.go.jp
+* GeoJson: http://geojson.org/
+* TopoJson: https://github.com/mbostock/topojson

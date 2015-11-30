@@ -20,28 +20,39 @@ var errorTemplate = `
 func main() {
 	mux := http.NewServeMux()
 
-	name := "googlemap/googlemap"
+	sampleType := os.Args[1]
+	var name, ext string
+	if sampleType == "geojson" {
+		name = "googlemap/googlemap"
+		ext = ".json"
+	} else {
+		name = "d3/d3"
+		ext = ".topojson"
+	}
 
 	var pref, city string
-	if os.Args[1] != "" {
-		pref = os.Args[1]
+	if os.Args[2] != "" {
+		pref = os.Args[2]
 	}
-	if len(os.Args) == 3 && os.Args[2] != "" {
-		city = os.Args[2]
+	if len(os.Args) == 4 {
+		city = os.Args[3]
 	}
 
 	var jsonPath string
 	var title string
+	var filename string
 	if city != "" {
-		jsonPath = pref + "/" + city + ".json"
+		filename = city
+		jsonPath = pref + "/" + filename + ext
 		title = pref + city
 	} else {
-		jsonPath = "47都道府県/" + pref + ".json"
+		filename = pref
+		jsonPath = "47都道府県/" + filename + ext
 		title = pref
 	}
 
-	jsonURL := "geojson/" + jsonPath
-
+	jsonURL := sampleType + "/" + jsonPath
+	fmt.Println(jsonURL)
 	_, err := os.Stat(jsonURL)
 	if err != nil {
 		fmt.Println(err)
@@ -49,11 +60,13 @@ func main() {
 	}
 
 	data := struct {
-		Title   string
-		JsonURL string
+		Title    string
+		JsonURL  string
+		FileName string
 	}{
-		Title:   title,
-		JsonURL: jsonURL,
+		Title:    title,
+		JsonURL:  jsonURL,
+		FileName: filename,
 	}
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +79,7 @@ func main() {
 			)
 		}
 	})
-	mux.Handle("/geojson/", http.StripPrefix("/geojson/", http.FileServer(http.Dir("geojson/"))))
+	mux.Handle("/"+sampleType+"/", http.StripPrefix("/"+sampleType+"/", http.FileServer(http.Dir(sampleType+"/"))))
 
 	http.ListenAndServe(":3000", mux)
 }

@@ -1,0 +1,57 @@
+{{define "d3/d3"}}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<title>{{.Title}} TopoJsonSample | d3.js</title>
+<style>
+	path { fill: red;}
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+var width = 500, height = 500;
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+	.style("background-color", "pink")
+	
+d3.json("{{.JsonURL}}", function(json){
+	var geo = topojson.feature(json, json.objects["{{.FileName}}"]);
+	
+	console.log("{{.FileName}}");
+	console.log("transform.scale", json.transform.scale);
+	console.log("transform.translate", json.transform.translate);
+	
+	var center = d3.geo.centroid(geo);	
+	console.log("center", center);
+	
+	var scale;
+	switch ("{{.FileName}}") {
+	case "東京都":
+		scale = 5000;
+		break;
+	default:
+		scale = (1 / json.transform.scale[0]);
+    }
+	
+	console.log("scale", scale);
+	
+	projection = d3.geo
+        .mercator()
+        .scale(scale)	
+        .translate([width / 2, height / 2])
+        .center(center);
+
+    var svg = d3.select("svg");
+	svg.selectAll("path")
+	    .data(geo.features)
+		.enter()
+		.append("path")
+	    .attr("d", d3.geo.path().projection(projection))
+	    .attr("class", function(d) { return d.id; });
+	
+});
+</script>
+</body>
+</html>
+{{end}}
